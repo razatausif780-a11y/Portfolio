@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Professional Portfolio - Details</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind for custom theme and use Inter font -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#4F46E5', // Indigo 600
+                        'secondary': '#10B981', // Emerald 500
+                        'background-light': '#F9FAFB', // Gray 50
+                        'text-dark': '#1F2937', // Gray 800
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Apply smooth scrolling and default font */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1F2937;
+            background-color: #F9FAFB;
+        }
+
+        /* --- Custom CSS for 3D Flip Card (DP) --- */
+        .flip-container {
+            /* Defines the 3D space */
+            perspective: 1000px;
+        }
+
+        .flipper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            /* Keep children in 3D space */
+            transform-style: preserve-3d;
+            /* Smooth transition for the flip */
+            transition: transform 0.8s;
+        }
+
+        .flip-container:hover .flipper {
+            /* Flip on hover */
+            transform: rotateY(180deg);
+        }
+
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            /* Hide the back face when rotated */
+            backface-visibility: hidden;
+            border-radius: 9999px; /* Full rounded corners */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .front {
+            z-index: 2;
+        }
+
+        .back {
+            /* Rotate the back side initially */
+            transform: rotateY(180deg);
+            background-color: var(--secondary); /* Using the secondary color */
+        }
+
+        .flip-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- Custom CSS for Typing Cursor --- */
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        #cursor {
+            animation: blink 0.7s infinite step-start;
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary hover:text-indigo-700 transition duration-300">
+                Md Tausif Raza's Portfolio
+            </a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about" class="text-text-dark hover:text-primary font-medium transition duration-300">About Me</a>
+                <a href="#projects" class="text-text-dark hover:text-primary font-medium transition duration-300">Projects</a>
+                <a href="#skills" class="text-text-dark hover:text-primary font-medium transition duration-300">Skills</a>
+                <a href="#contact" class="text-text-dark hover:text-primary font-medium transition duration-300">Contact</a>
+            </nav>
+            <!-- Mobile Menu Button (for future JS expansion) -->
+            <button class="md:hidden text-text-dark p-2 rounded-lg hover:bg-gray-100 transition duration-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- 1. Hero / About Me Section (with Typing Animation and 3D Flip DP) -->
+        <section id="about" class="grid md:grid-cols-3 gap-10 items-center mb-24 bg-white p-8 rounded-xl shadow-lg">
+            <div class="md:col-span-2">
+                <!-- Running Introduction (Typing Effect) -->
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight text-text-dark">
+                    <!-- Text will be dynamically typed here -->
+                    <span id="typed-text" class="text-primary"></span>
+                    <!-- Cursor element for typing effect -->
+                    <span id="cursor" class="text-primary font-light">|</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-6">
+                    Full Stack Developer | UI/UX Enthusiast | Problem Solver
+                </p>
+                <p class="text-lg text-gray-700">
+                    I'm a **Full Stack Architect** focused on engineering the future of web. With 5 years of experience, I specialize in crafting **high-performance, scalable applications** using the latest technologies like **React, Node.js, and modern cloud infrastructure**. My mission is simple: to transform abstract ideas into polished, user-centric digital products. Got a challenge? I'm ready to code the solution.
+                </p>
+                <a href="#contact" class="mt-8 inline-block bg-secondary text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-emerald-600 transition duration-300 transform hover:scale-105">
+                    Get in Touch
+                </a>
+            </div>
+            
+            <!-- 3D Flip DP Implementation -->
+            <div class="md:col-span-1 flex justify-center p-4">
+                <div class="flip-container w-64 h-64 sm:w-72 sm:h-72">
+                    <div class="flipper">
+                        <!-- Front Side (Photo) -->
+                        <div class="front">
+                            <img src="https://placehold.co/300x300/4F46E5/FFFFFF?text=Md+Tausif+Raza"
+                                 alt="Md Tausif Raza Profile Picture"
+                                 class="flip-image ring-4 ring-primary ring-opacity-50">
+                        </div>
+                        <!-- Back Side (Info/Contact) -->
+                        <div class="back p-4 text-center text-white flex flex-col justify-center">
+                            <h4 class="text-2xl font-bold mb-2">Hello!</h4>
+                            <p class="text-base font-semibold">Connect with me on LinkedIn!</p>
+                            <p class="text-sm mt-3 opacity-80">Full Stack Developer | Creator</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-gray-300 my-16">
+
+        <!-- 2. Projects Section -->
+        <section id="projects" class="mb-24">
+            <h2 class="text-4xl font-bold text-center mb-12 text-text-dark">
+                Featured <span class="text-primary">Projects</span>
+            </h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Project Card 1 -->
+                <div class="bg-white rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 overflow-hidden">
+                    <!-- Placeholder Project Image -->
+                    <img src="https://placehold.co/600x400/10B981/FFFFFF?text=Project+One+Mockup"
+                         alt="Project One Screenshot"
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-text-dark mb-3">E-commerce Platform</h3>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            A full-featured shopping application built with **MERN Stack (MongoDB, Express, React, Node.js)**. Implemented secure payment gateways and real-time inventory management.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs font-medium bg-primary text-white px-3 py-1 rounded-full">React</span>
+                            <span class="text-xs font-medium bg-primary text-white px-3 py-1 rounded-full">Node.js</span>
+                            <span class="text-xs font-medium bg-primary text-white px-3 py-1 rounded-full">MongoDB</span>
+                        </div>
+                        <a href="#" class="text-primary hover:text-indigo-700 font-medium flex items-center group">
+                            View Project
+                            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="bg-white rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 overflow-hidden">
+                    <!-- Placeholder Project Image -->
+                    <img src="https://placehold.co/600x400/4F46E5/FFFFFF?text=Project+Two+Dashboard"
+                         alt="Project Two Screenshot"
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-text-dark mb-3">Analytics Dashboard</h3>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            A real-time data visualization tool for tracking user engagement and performance metrics. Used D3.js for complex charts and graphs.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs font-medium bg-primary text-white px-3 py-1 rounded-full">Vue.js</span>
+                            <span class="text-xs font-medium bg-primary text-white px-3 py-1 rounded-full">D3.js</span>
+                            <span class="text-xs font-medium bg-primary text-white px-3 py-1 rounded-full">Firebase</span>
+                        </div>
+                        <a href="#" class="text-primary hover:text-indigo-700 font-medium flex items-center group">
+                            View Project
+                            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="bg-white rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 overflow-hidden">
+                    <!-- Placeholder Project Image -->
+                    <img src="https://placehold.co/600x400/8B5CF6/FFFFFF?text=Project+Three+Mobile"
+                         alt="Project Three Screenshot"
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-text-dark mb-3">Mobile Recipe App</h3>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            A cross-platform mobile application for recipe discovery and meal planning. Developed with React Native and integrated with a third-party API.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs font-medium bg-primary text-white px-3 py-1 rounded-full">React Native</span>
+                            <span class="text-xs font-medium bg-primary text-white px-3 py-1 rounded-full">API Integration</span>
+                            <span class="text-xs font-medium bg-primary text-white px-3 py-1 rounded-full">Redux</span>
+                        </div>
+                        <a href="#" class="text-primary hover:text-indigo-700 font-medium flex items-center group">
+                            View Project
+                            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-gray-300 my-16">
+
+        <!-- 3. Skills Section -->
+        <section id="skills" class="mb-24 bg-white p-8 rounded-xl shadow-lg">
+            <h2 class="text-4xl font-bold text-center mb-12 text-text-dark">
+                My <span class="text-secondary">Skills</span>
+            </h2>
+
+            <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+
+                <!-- Skill Category 1 -->
+                <div class="p-5 border border-gray-200 rounded-lg bg-background-light hover:shadow-md transition duration-300">
+                    <h4 class="text-xl font-semibold mb-3 text-primary">Frontend</h4>
+                    <ul class="space-y-2 text-gray-700">
+                        <li>&#10003; React.js / Redux</li>
+                        <li>&#10003; Vue.js / Vuex</li>
+                        <li>&#10003; JavaScript (ES6+)</li>
+                        <li>&#10003; HTML5 & CSS3</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category 2 -->
+                <div class="p-5 border border-gray-200 rounded-lg bg-background-light hover:shadow-md transition duration-300">
+                    <h4 class="text-xl font-semibold mb-3 text-primary">Backend</h4>
+                    <ul class="space-y-2 text-gray-700">
+                        <li>&#10003; Node.js / Express</li>
+                        <li>&#10003; Python / Django</li>
+                        <li>&#10003; REST APIs</li>
+                        <li>&#10003; Authentication (JWT)</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category 3 -->
+                <div class="p-5 border border-gray-200 rounded-lg bg-background-light hover:shadow-md transition duration-300">
+                    <h4 class="text-xl font-semibold mb-3 text-primary">Database & Tools</h4>
+                    <ul class="space-y-2 text-gray-700">
+                        <li>&#10003; MongoDB / SQL</li>
+                        <li>&#10003; Git / GitHub</li>
+                        <li>&#10003; Docker / Kubernetes</li>
+                        <li>&#10003; AWS (S3, EC2)</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category 4 -->
+                <div class="p-5 border border-gray-200 rounded-lg bg-background-light hover:shadow-md transition duration-300">
+                    <h4 class="text-xl font-semibold mb-3 text-primary">Design & Other</h4>
+                    <ul class="space-y-2 text-gray-700">
+                        <li>&#10003; Tailwind CSS</li>
+                        <li>&#10003; Figma / Sketch</li>
+                        <li>&#10003; Agile / Scrum</li>
+                        <li>&#10003; Problem Solving</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <hr class="border-gray-300 my-16">
+
+        <!-- 4. Contact Section -->
+        <section id="contact" class="mb-12">
+            <h2 class="text-4xl font-bold text-center mb-12 text-text-dark">
+                <span class="text-secondary">Contact</span> Me
+            </h2>
+
+            <div class="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                <p class="text-center text-lg text-gray-700 mb-6">
+                    Interested in collaborating? Feel free to reach out to discuss your project or opportunity.
+                </p>
+
+                <div class="space-y-4 text-center">
+                    <div class="flex items-center justify-center space-x-2">
+                        <!-- Email Icon -->
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 4v7a2 2 0 01-2 2H5a2 2 0 01-2-2v-7"></path></svg>
+                        <p class="text-lg font-medium text-text-dark">
+                            Email: <a href="mailto:razatausif780@gmail.com" class="text-primary hover:underline">md.tausif.raza.email@example.com</a>
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-center space-x-2">
+                        <!-- LinkedIn Icon (Placeholder SVG) -->
+                        <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.754 0-.964.784-1.75 1.75-1.75s1.75.786 1.75 1.75c0 .964-.783 1.754-1.75 1.754zm13.5 12.268h-3v-5.604c0-3.368-4-3.568-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.793 7 3.237v5.998z"/></svg>
+                        <p class="text-lg font-medium text-text-dark">
+                            LinkedIn: <a href="https://linkedin.com/in/md-tausif-raza-profile" target="_blank" class="text-primary hover:underline">/in/md-tausif-raza-profile</a>
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-center space-x-2">
+                        <!-- GitHub Icon (Placeholder SVG) -->
+                        <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.086-.744.085-.729.085-.729 1.203.085 1.838 1.237 1.838 1.237 1.07 1.837 2.809 1.305 3.49.998.108-.778.418-1.305.762-1.604-2.665-.305-5.466-1.334-5.466-5.931 0-1.311.469-2.383 1.238-3.228-.124-.303-.538-1.523.118-3.176 0 0 1.008-.323 3.301 1.233.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.29-1.556 3.298-1.233 3.298-1.233.656 1.653.242 2.873.118 3.176.77.845 1.236 1.917 1.236 3.228 0 4.609-2.807 5.624-5.474 5.922.428.369.818 1.096.818 2.214v3.303c0 .319.192.694.8 0 4.766-1.59 8.199-6.088 8.199-11.387c0-6.627-5.373-12-12-12z"/></svg>
+                        <p class="text-lg font-medium text-text-dark">
+                            GitHub: <a href="https://github.com/md-tausif-raza-username" target="_blank" class="text-primary hover:underline">/md-tausif-raza-username</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-text-dark text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="mb-2">&copy; <span id="year">2023</span> Md Tausif Raza. All rights reserved.</p>
+            <p class="text-sm text-gray-400">Built with <span class="text-primary">&hearts;</span> and Tailwind CSS.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Typing Animation (Running Introduction) Script ---
+        function typeWriter(elementId, text, delay = 70) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+
+            const nameKey = "Md Tausif Raza"; // Use the actual name here for dynamic coloring
+
+            let i = 0;
+            element.textContent = ''; // Clear existing content
+
+            function typing() {
+                if (i < text.length) {
+                    // Check if we need to wrap the name in a primary color span
+                    const currentText = text.slice(0, i + 1);
+                    
+                    if (currentText.includes(nameKey)) {
+                        // Special handling for the name part
+                        const parts = currentText.split(nameKey);
+                        element.innerHTML = parts[0] + '<span class="text-primary">' + nameKey.slice(0, currentText.length - parts[0].length) + '</span>';
+                    } else {
+                        element.textContent = currentText;
+                    }
+                    
+                    i++;
+                    setTimeout(typing, delay);
+                } else {
+                    // Text complete, hide cursor after a short delay
+                    const cursor = document.getElementById('cursor');
+                    if (cursor) {
+                         setTimeout(() => { cursor.style.opacity = '0'; }, 1000); // Hide after 1 second
+                    }
+                }
+            }
+            typing();
+        }
+
+        // --- Initialize on Load ---
+        window.onload = function () {
+            // 1. Set current year in the footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // 2. Start the typing animation
+            const nameToType = "Md Tausif Raza";
+            const fullText = `Hi, I'm ${nameToType}`;
+            typeWriter('typed-text', fullText);
+        };
+    </script>
+</body>
+</html>
